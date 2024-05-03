@@ -1,7 +1,7 @@
 import React from "react";
-import voice from "../../../public/Images/voice.png";
-import network from "../../../public/Images/network.png";
-import battery from "../../../public/Images/battery.png";
+import voice from "../../assets/Images/voice.png";
+import network from "../../assets/Images/network.png";
+import battery from "../../assets/Images/battery.png";
 import { IoIosSearch } from "react-icons/io";
 import { IoNotificationsOutline } from "react-icons/io5";
 

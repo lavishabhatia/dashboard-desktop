@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { HiChevronRight } from "react-icons/hi";
-import folder from "../../../public/Images/Diary.png";
+import folder from "../../assets/Images/Diary.png";
 
 const icon = {
   folder: folder,
@@ -47,31 +47,35 @@ const View = () => {
     setScreen(newScreen);
   };
 
+
   const handleReName = (id, timesClicked) => {
     if (timesClicked === RENAME_CLICKS) {
-      setRenameThreshold(0);
       setShowInput(id);
-      /**
-       * @param {Event} e
-       */
       const closeOnOutClick = (e) => {
-        if (!e.target.classList.contains("input")) {
-          setShowInput();
+        let clicks = 0;
 
+        setShowInput((input) => {
+          clicks = input;
+          return input;
+        })
+        if (!e.target.classList.contains("input") && clicks) {
+          setShowInput(null);
           window.removeEventListener("click", closeOnOutClick);
+          console.log("Event listener removed");
         }
-
-        window.addEventListener("click", closeOnOutClick);
       };
-      // Condtition to convert p tag into input tag.
-    }
-    setRenameThreshold((threshold) => threshold + 1);
+      window.addEventListener("click", closeOnOutClick);
 
-    const timeout = setTimeout(() => {
       setRenameThreshold(0);
-      clearTimeout(timeout);
-    }, 800);
+    } else {
+      setRenameThreshold(renameThreshold + 1);
+      const timeout = setTimeout(() => {
+        setRenameThreshold(0);
+        clearTimeout(timeout);
+      }, 800);
+    }
   };
+
 
   useEffect(() => {
     window.oncontextmenu = (e) => {
@@ -107,15 +111,16 @@ const View = () => {
 
   const handleContextMenu = (e) => {
     e.preventDefault();
+    setShowInput();
     const { clientX, clientY } = e;
 
-    if ((clientY + 300 ) > window.screen.height) {
-          setContextCoordinate({ x: clientX, y: clientY - 100 });
+    if ((clientY + 300) > window.screen.height) {
+      setContextCoordinate({ x: clientX, y: clientY - 100 });
     }
 
     else {
 
-      setContextCoordinate({ x: clientX, y: clientY  });
+      setContextCoordinate({ x: clientX, y: clientY });
     }
 
     setContextMenu(true);
@@ -171,9 +176,8 @@ const View = () => {
               return (
                 <div
                   key={i}
-                  className={`${
-                    tool.children?.length ? "group" : ""
-                  } relative border-b pb-1 border-1 hover:bg-gray-100 flex items-center justify-between`}
+                  className={`${tool.children?.length ? "group" : ""
+                    } relative border-b pb-1 border-1 hover:bg-gray-100 flex items-center justify-between`}
                 >
                   {/* <button>{tool?.name}</button> */}
                   {tool.type === "folder" ? (

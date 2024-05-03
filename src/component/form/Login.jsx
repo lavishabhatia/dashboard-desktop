@@ -1,16 +1,16 @@
 import React from "react";
-import brand from "../../../public/Images/brand.png";
-import user from "../../../public/Images/user.png";
+import brand from "../../assets/Images/brand.png";
+import user from "../../assets/Images/user.png";
 import Button from "../ui/Button";
 import Input from "../ui/Input";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
+import * as yup from "yup";
 
-const validationSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email address").required("Required"),
-  password: Yup.string().required("Required"),
+const validationSchema = yup.object().shape({
+  email: yup.string().email("Invalid email address").required("Required"),
+  password: yup.string().required("Required"),
 });
 
 const Login = () => {
@@ -48,13 +48,13 @@ const Login = () => {
                   placeholder="demo@123"
                   {...register("email")}
                   type="email"
-                  errors={errors}
+                  errors={errors.email?.message}
                 />
                 <Input
                   placeholder="Password"
                   type="password"
                   {...register("password")}
-                  errors={errors}
+                  errors={errors?.password?.message}
                 />
                 <div className="flex gap-4">
                   <input

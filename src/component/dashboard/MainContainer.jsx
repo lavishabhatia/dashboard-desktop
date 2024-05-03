@@ -1,8 +1,8 @@
 import React from "react";
-import calender from "../../../public/Images/Calender.png";
-import diary from "../../../public/Images/Diary.png";
-import google from "../../../public/Images/Google.png";
-import emptybin from "../../../public/Images/Empty-Bin.png";
+import calender from "../../assets/Images/Calender.png";
+import diary from "../../assets/Images/Diary.png";
+import google from "../../assets/Images/Google.png";
+import emptybin from "../../assets/Images/Empty-Bin.png";
 
 import View from "./View";
 

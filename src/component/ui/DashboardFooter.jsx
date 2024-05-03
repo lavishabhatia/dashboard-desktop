@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./Button";
 
-import brand from "../../../public/Images/brand.png";
+import brand from "../../assets/Images/brand.png";
 
 const DashboardFooter = () => {
   return (

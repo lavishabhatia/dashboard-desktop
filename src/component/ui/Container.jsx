@@ -1,5 +1,5 @@
 import React from "react";
-import wallpaper from "../../../public/Images/Wallpaper.png";
+import wallpaper from "../../assets/Images/Wallpaper.png";
 
 const Container = ({ isImageFull, children }) => {
   return (
