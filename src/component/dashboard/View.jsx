@@ -49,6 +49,7 @@ const View = () => {
 
 
   const handleReName = (id, timesClicked) => {
+    setShowInput()
     if (timesClicked === RENAME_CLICKS) {
       setShowInput(id);
       const closeOnOutClick = (e) => {
@@ -101,7 +102,7 @@ const View = () => {
   const handleNewFolder = () => {
     console.log("Hello");
     const newFolder = {
-      id: Math.ceil(Math.random() * 1000000),
+      id: Math.ceil(Math.random() * 1000000) * Math.ceil(Math.random() * 100),
       type: "folder",
       name: `New Folder ${newFolderCounter}`,
     };
@@ -155,7 +156,7 @@ const View = () => {
             ) : (
               <p
                 className="text-sm font-medium text-center"
-                onClick={() => handleReName(folder?.id, renameThreshold)}
+                onClick={() => {!showInput ? handleReName(folder?.id, renameThreshold) : ""}}
               >
                 {folder.name}
               </p>
